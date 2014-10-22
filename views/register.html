@@ -1,36 +1,145 @@
-<div>
-  <h1>Registration</h1><hr/>
-  <div id='registrationSuccess' ng-show='registeredUser'>
-    <h3>Successfully registered user!</h3>
-    <p>email: {{ registeredUser.name }}</p>
-    <p>independent wallet: {{ registeredUser.ripple_address.address }}</p>
-    <p>hosted wallet: {{ registeredUser.hosted_address.address }}?dt={{ registeredUser.hosted_address.tag }}</p>
-  </div>
-  <div id='registrationError' ng-show='registrationError'>
-    <h3>Registration Error!</h3>
-    <p>{{ registrationError }}</p>
-  </div>
-  <div id='registerModal'>
-    <form id='registrationForm' role="form" ng-hide="registeredUser" ng-submit="register()">
-      <h5>Account Information</h5>
-      <div class="form-group">
-        <label class="sr-only" for="signup-email">Ripple address</label>
-        <input type="text" ng-model='newUser.ripple_address' class="form-control" id="signup-ripple-address" placeholder="Ripple address">
-      </div>
-      <div class="form-group">
-        <label class="sr-only" for="signup-email">Email address</label>
-        <input type="email" ng-model='newUser.name' class="form-control" id="signup-email" placeholder="Email address">
-      </div>
-      <div class="form-group">
-        <label class="sr-only" for="signup-password">Password</label>
-        <input type="password" ng-model='newUser.password' class="form-control" id="signup-password" placeholder="Password">
-      </div>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" value="term">
-          I agree with the Terms and Conditions. </label>
-      </div>
-      <button class="btn btn-primary" type="submit">Sign up</button>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>Unify | Sign Up..</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="../assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Page Style -->    
+    <link rel="stylesheet" href="../assets/css/pages/page_log_reg_v2.css">    
+
+    <!-- CSS Theme -->    
+    <link rel="stylesheet" href="../assets/css/themes/default.css" id="style_color">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="../assets/css/custom.css">
+</head> 
+
+<body>
+<!--=== Style Switcher ===-->    
+<i class="style-switcher-btn fa fa-cogs hidden-xs animated fadeInRight"></i>
+<div class="style-switcher animated fadeInRight">
+    <div class="theme-close"><i class="icon-close"></i></div>
+    <div class="theme-heading">Theme Colors</div>
+    <ul class="list-unstyled">
+        <li class="theme-default theme-active" data-style="default" data-header="light"></li>
+        <li class="theme-blue" data-style="blue" data-header="light"></li>
+        <li class="theme-orange" data-style="orange" data-header="light"></li>
+        <li class="theme-red" data-style="red" data-header="light"></li>
+        <li class="theme-light last" data-style="light" data-header="light"></li>
+        <li class="theme-purple" data-style="purple" data-header="light"></li>
+        <li class="theme-aqua" data-style="aqua" data-header="light"></li>
+        <li class="theme-brown" data-style="brown" data-header="light"></li>
+        <li class="theme-dark-blue" data-style="dark-blue" data-header="light"></li>
+        <li class="theme-light-green last" data-style="light-green" data-header="light"></li>        
+    </ul>
+    <div class="style-switcher-logo"><a href="index.html"><img src="../assets/img/logo2-default.png" width="71" heigt="26" alt=""></a></div>
+</div><!--/style-switcher-->
+<!--=== End Style Switcher ===-->    
+
+<!--=== Content Part ===-->    
+<div class="container" id="registerModal">
+<form id="registrationForm" role="form" ng-hide="registeredUser" ng-submit="register()">
+    <!--Reg Block-->
+    <div class="reg-block">
+        <div class="reg-block-header">
+            <h2>Sign Up</h2>
+            <ul class="social-icons text-center">
+                <li><a class="rounded-x social_facebook" data-original-title="Facebook" href="#"></a></li>
+                <li><a class="rounded-x social_twitter" data-original-title="Twitter" href="#"></a></li>
+                <li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="#"></a></li>
+                <li><a class="rounded-x social_linkedin" data-original-title="Linkedin" href="#"></a></li>
+            </ul>
+            <p>Already Signed Up? Click <a ui-sref="login" class="login" data-toggle="modal" data-target="login">Sign In</a> to login your account.</p>
+        </div>
+
+        <div class="input-group margin-bottom-20">
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            <input type="text" id="signup-ripple-address" ng-model="newUser.ripple_address" class="form-control" placeholder="Ripple address">
+        </div>
+        <div class="input-group margin-bottom-20">
+            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            <input type="email" id="signup-email" ng-model="newUser.name" class="form-control" placeholder="Email">
+        </div>
+        <div class="input-group margin-bottom-20">
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            <input type="text" id="signup-password" ng-model="newUser.password" class="form-control" placeholder="Password">
+        </div>
+        <hr>
+        <label class="checkbox">
+            <input type="checkbox"> 
+            <p>I read <a target="_blank" href="page_terms.html">Terms and Conditions</a></p>
+        </label>
+                                
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <button type="submit" class="btn-u btn-block">Register</button>                
+            </div>
+        </div>
+    </div>
     </form>
-  </div>
-</div>
+    <!--End Reg Block-->
+</div><!--/container-->
+<!--=== End Content Part ===-->
+
+<!-- JS Global Compulsory -->           
+<script type="text/javascript" src="../assets/plugins/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+<!-- JS Implementing Plugins -->           
+<script type="text/javascript" src="../assets/plugins/back-to-top.js"></script>
+<script type="text/javascript" src="../assets/plugins/countdown/jquery.countdown.js"></script>
+<script type="text/javascript" src="../assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+<script type="text/javascript">
+    $.backstretch([
+      "../assets/img/bg/5.jpg",
+      "../assets/img/bg/4.jpg",
+      ], {
+        fade: 1000,
+        duration: 7000
+    });
+</script>
+<!-- JS Page Level -->           
+<script type="text/javascript" src="../assets/js/app.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();
+    });
+</script>
+<!--[if lt IE 9]>
+    <script src="../assets/plugins/respond.js"></script>
+    <script src="../assets/plugins/html5shiv.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29166220-1']);
+  _gaq.push(['_setDomainName', 'htmlstream.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html> 
